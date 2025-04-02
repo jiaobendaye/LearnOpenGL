@@ -5,16 +5,18 @@ for _, x in ipairs(os.files("src/*.cpp")) do
         set_kind("binary")
         add_deps("glad", "stb_image")
         add_includedirs("include")
+        set_rundir("$(projectdir)/hello")
         add_files(x)
 end
 
 
 target("resources")
     set_kind("phony")
-    for _, x in ipairs(os.files("src/*.cpp")) do 
-        add_deps(path.basename(x))
-    end
-    after_build(function (target) 
+    set_default(false)
+    on_build(function (target) 
+        if (not os.isdir(target:targetdir())) then
+            os.mkdir(target:targetdir())
+        end
         os.cp(path.join("$(projectdir)/hello/resources/shaders", "*"), target:targetdir())
         os.cp(path.join("$(projectdir)/hello/resources/textures", "*"), target:targetdir())
     end)
