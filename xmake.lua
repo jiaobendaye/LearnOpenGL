@@ -6,4 +6,7 @@ includes("3rd/*/xmake.lua")
 add_requires("glfw", "glm")
 add_packages("glfw", "glm")
 
-includes("hello")
+add_includedirs("include")
+set_rundir("$(projectdir)")
+
+includes("src/*/xmake.lua")
