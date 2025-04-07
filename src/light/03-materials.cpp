@@ -196,7 +196,9 @@ int main()
 
         // view/projection transformations
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        glm::mat4 view = camera.GetViewMatrix();
+        // glm::mat4 view = camera.GetViewMatrix();
+        glm::mat4 view = camera.GetViewMatrixCycle();
+
         lightingShader.setMat4("projection", projection);
         lightingShader.setMat4("view", view);
 
@@ -217,6 +219,7 @@ int main()
         model = glm::translate(model, lightPos);
         model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
         lightCubeShader.setMat4("model", model);
+        lightCubeShader.setVec3("lightColor", lightColor);
 
         glBindVertexArray(lightCubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
