@@ -23,6 +23,8 @@ in vec2 TexCoords;
 uniform vec3 viewPos;
 uniform Material material;
 uniform Light light;
+uniform float matrixlight;
+uniform float matrixmove;
 
 void main()
 {
@@ -42,7 +44,17 @@ void main()
     vec3 specular = light.specular * spec * texture(material.specular, TexCoords).rgb;  
     
       // emission
-    vec3 emission = texture(material.emission, TexCoords).rgb;
+    // vec3 emission = texture(material.emission, TexCoords).rgb;
+    vec3 emission;
+    float x = TexCoords.x;
+    float y = TexCoords.y;
+    if (x < 0.2 || x > 0.8 || y < 0.2 || y > 0.8) {
+        emission = matrixlight*texture(material.emission,vec2(TexCoords.x,TexCoords.y+matrixmove)).rgb;
+    }
+    else
+    {
+        emission = vec3(0.0);
+    }
         
     vec3 result = ambient + diffuse + specular + emission;
     FragColor = vec4(result, 1.0);

@@ -209,6 +209,9 @@ int main()
         glm::mat4 model = glm::mat4(1.0f);
         lightingShader.setMat4("model", model);
 
+        lightingShader.setFloat("matrixlight", (1.0+sin(glfwGetTime()))/2+0.5);
+        lightingShader.setFloat("matrixmove", glfwGetTime());
+
         // bind diffuse map
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
