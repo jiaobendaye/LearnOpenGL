@@ -9,4 +9,10 @@ add_packages("glfw", "glm")
 add_includedirs("include")
 set_rundir("$(projectdir)")
 
-includes("src/*/xmake.lua")
+for _, x in ipairs(os.files("src/*/*.cpp")) do 
+    target(path.basename(x))
+        set_kind("binary")
+        add_deps("glad", "stb_image")
+        set_group(path.basename(path.directory(path.absolute(x))))
+        add_files(x)
+end
