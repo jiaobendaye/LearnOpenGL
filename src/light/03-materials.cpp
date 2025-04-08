@@ -196,8 +196,8 @@ int main()
 
         // view/projection transformations
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        // glm::mat4 view = camera.GetViewMatrix();
-        glm::mat4 view = camera.GetViewMatrixCycle();
+        glm::mat4 view = camera.GetViewMatrix();
+        // glm::mat4 view = camera.GetViewMatrixCycle();
 
         lightingShader.setMat4("projection", projection);
         lightingShader.setMat4("view", view);
@@ -250,14 +250,7 @@ void processInput(GLFWwindow *window)
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera.ProcessKeyboard(FORWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera.ProcessKeyboard(BACKWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera.ProcessKeyboard(LEFT, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera.ProcessKeyboard(RIGHT, deltaTime);
+    camera.ProcessInput(window, deltaTime);
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
