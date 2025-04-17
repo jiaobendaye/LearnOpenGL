@@ -10,7 +10,7 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include "myshader.h"
+#include "shader.h"
 #include "mesh.h"
 
 #include <string>
