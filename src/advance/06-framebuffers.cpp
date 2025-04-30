@@ -77,7 +77,8 @@ int main()
     // build and compile shaders
     // -------------------------
     Shader shader("resources/shaders/coordinate_system.vs", "resources/shaders/model_loading.fs");
-    Shader screenShader("resources/shaders/framebuffers_screen.vs", "resources/shaders/framebuffers_screen.fs");
+    // Shader screenShader("resources/shaders/framebuffers_screen.vs", "resources/shaders/framebuffers_screen.fs");
+    Shader screenShader("resources/shaders/framebuffers_screen.vs", "resources/shaders/framebuffers_screen_kernel.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -202,6 +203,8 @@ int main()
     glGenTextures(1, &textureColorbuffer);
     glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);	// set texture wrapping to GL_REPEAT (default wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer, 0);
