@@ -81,7 +81,8 @@ int main()
 
     // load models
     // -----------
-    Model ourModel("resources/objects/backpack/backpack.obj");
+    // Model ourModel("resources/objects/backpack/backpack.obj");
+    Model ourModel("resources/objects/nanosuit_reflection/nanosuit.obj");
 
     
     // draw in wireframe
