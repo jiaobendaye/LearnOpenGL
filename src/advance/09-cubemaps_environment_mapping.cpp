@@ -213,6 +213,10 @@ int main()
     skyboxShader.use();
     skyboxShader.setInt("skybox", 0);
 
+    // load models
+    // -----------
+    Model ourModel("resources/objects/backpack/backpack.obj");
+
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -241,7 +245,12 @@ int main()
         shader.setMat4("view", view);
         shader.setMat4("projection", projection);
         shader.setVec3("cameraPos", camera.Position);
+
+        ourModel.Draw(shader);
+
         // cubes
+        model = glm::translate(model, {2.0f,  2.0f, -2.0f});
+        shader.setMat4("model", model);
         glBindVertexArray(cubeVAO);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
