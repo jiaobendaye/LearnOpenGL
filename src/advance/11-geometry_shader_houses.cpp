@@ -83,6 +83,7 @@ int main()
         // draw points
         shader.use();
         glBindVertexArray(VAO);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         glDrawArrays(GL_POINTS, 0, 4);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
