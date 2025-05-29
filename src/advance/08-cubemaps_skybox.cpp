@@ -79,7 +79,7 @@ int main()
     // -------------------------
     // Shader shader("6.1.cubemaps.vs", "6.1.cubemaps.fs");
     Shader shader("resources/shaders/coordinate_system.vs", "resources/shaders/model_loading.fs");
-    Shader skyboxShader("resources/shaders/skybox.vs", "resources/shaders/skybox.fs");
+    Shader skyboxShader("resources/shaders/6/skybox.vs", "resources/shaders/6/skybox.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------

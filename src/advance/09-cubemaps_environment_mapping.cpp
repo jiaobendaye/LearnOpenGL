@@ -77,8 +77,8 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader shader("resources/shaders/cubemaps_environment_mapping.vs", "resources/shaders/cubemaps_environment_mapping.fs");
-    Shader skyboxShader("resources/shaders/skybox.vs", "resources/shaders/skybox.fs");
+    Shader shader("resources/shaders/6/cubemaps_environment_mapping.vs", "resources/shaders/6/cubemaps_environment_mapping.fs");
+    Shader skyboxShader("resources/shaders/6/skybox.vs", "resources/shaders/6/skybox.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------

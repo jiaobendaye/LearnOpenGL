@@ -73,10 +73,10 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader shaderRed("resources/shaders/advanced_glsl.vs", "resources/shaders/red.fs");
-    Shader shaderGreen("resources/shaders/advanced_glsl.vs", "resources/shaders/green.fs");
-    Shader shaderBlue("resources/shaders/advanced_glsl.vs", "resources/shaders/blue.fs");
-    Shader shaderYellow("resources/shaders/advanced_glsl.vs", "resources/shaders/yellow.fs");
+    Shader shaderRed("resources/shaders/8/advanced_glsl.vs", "resources/shaders/8/red.fs");
+    Shader shaderGreen("resources/shaders/8/advanced_glsl.vs", "resources/shaders/8/green.fs");
+    Shader shaderBlue("resources/shaders/8/advanced_glsl.vs", "resources/shaders/8/blue.fs");
+    Shader shaderYellow("resources/shaders/8/advanced_glsl.vs", "resources/shaders/8/yellow.fs");
     
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
