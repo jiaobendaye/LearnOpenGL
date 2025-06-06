@@ -77,8 +77,8 @@ int main()
     // build and compile shaders
     // -------------------------
     Shader shader("resources/shaders/coordinate_system.vs", "resources/shaders/model_loading.fs");
-    // Shader screenShader("resources/shaders/framebuffers_screen.vs", "resources/shaders/framebuffers_screen.fs");
-    Shader screenShader("resources/shaders/framebuffers_screen.vs", "resources/shaders/framebuffers_screen_kernel.fs");
+    Shader screenShader("resources/shaders/framebuffers_screen.vs", "resources/shaders/framebuffers_screen.fs");
+    // Shader screenShader("resources/shaders/framebuffers_screen.vs", "resources/shaders/framebuffers_screen_kernel.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
