@@ -80,7 +80,7 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader shader("resources/shaders/advanced_lighting/1.advanced_lighting.vs", "resources/shaders/advanced_lighting/1.advanced_lighting.fs");
+    Shader shader("resources/shaders/advanced_lighting/1.vs", "resources/shaders/advanced_lighting/1.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -157,7 +157,6 @@ int main()
         glBindTexture(GL_TEXTURE_2D, floorTexture);
         glDrawArrays(GL_TRIANGLES, 0, 6);
 
-        std::cout << (blinn ? "Blinn-Phong" : "Phong") << std::endl;
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -193,6 +192,7 @@ void processInput(GLFWwindow *window)
     if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS && !blinnKeyPressed) 
     {
         blinn = !blinn;
+        std::cout << (blinn ? "Blinn-Phong" : "Phong") << std::endl;
         blinnKeyPressed = true;
     }
     if (glfwGetKey(window, GLFW_KEY_B) == GLFW_RELEASE) 
