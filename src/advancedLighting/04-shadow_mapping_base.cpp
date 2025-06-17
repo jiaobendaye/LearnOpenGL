@@ -82,6 +82,7 @@ int main()
 
     // build and compile shaders
     // -------------------------
+    Shader shader("resources/shaders/advanced_lighting/3.1.2.shadow_mapping.vs", "resources/shaders/advanced_lighting/3.1.2.shadow_mapping.fs");
     Shader simpleDepthShader("resources/shaders/advanced_lighting/shadow_mapping_depth.vs", "resources/shaders/advanced_lighting/shadow_mapping_depth.fs");
     Shader debugDepthQuad("resources/shaders/advanced_lighting/debug_quad.vs", "resources/shaders/advanced_lighting/debug_quad_depth.fs");
 
@@ -140,6 +141,9 @@ int main()
 
     // shader configuration
     // --------------------
+    shader.use();
+    shader.setInt("diffuseTexture", 0);
+    shader.setInt("shadowMap", 1);
     debugDepthQuad.use();
     debugDepthQuad.setInt("depthMap", 0);
 
@@ -190,6 +194,23 @@ int main()
         glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        // 2. render scene as normal using the generated depth/shadow map  
+        // --------------------------------------------------------------
+        shader.use();
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 view = camera.GetViewMatrix();
+        shader.setMat4("projection", projection);
+        shader.setMat4("view", view);
+        // set light uniforms
+        shader.setVec3("viewPos", camera.Position);
+        shader.setVec3("lightPos", lightPos);
+        shader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, woodTexture);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, depthMap);
+        renderScene(shader);
+
         // render Depth map to quad for visual debugging
         // ---------------------------------------------
         debugDepthQuad.use();
@@ -197,7 +218,7 @@ int main()
         debugDepthQuad.setFloat("far_plane", far_plane);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, depthMap);
-        renderQuad();
+        //renderQuad();
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -375,13 +396,13 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     glViewport(0, 0, width, height);
 }
 
+
 // glfw: whenever the mouse moves, this callback is called
 // -------------------------------------------------------
 void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
 {
     float xpos = static_cast<float>(xposIn);
     float ypos = static_cast<float>(yposIn);
-
     if (firstMouse)
     {
         lastX = xpos;
