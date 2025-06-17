@@ -1,5 +1,7 @@
 set_project("LearnOpenGL")
 
+add_rules("mode.debug", "mode.release")
+
 
 includes("3rd/*/xmake.lua")
 
