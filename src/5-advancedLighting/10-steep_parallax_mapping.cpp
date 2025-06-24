@@ -78,7 +78,7 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader shader("resources/shaders/advanced_lighting/5.1.parallax_mapping.vs", "resources/shaders/advanced_lighting/5.1.parallax_mapping.fs");
+    Shader shader("resources/shaders/advanced_lighting/5.2.parallax_mapping.vs", "resources/shaders/advanced_lighting/5.2.parallax_mapping.fs");
 
     // load textures
     // -------------
@@ -133,7 +133,7 @@ int main()
         shader.setVec3("viewPos", camera.Position);
         shader.setVec3("lightPos", lightPos);
         shader.setFloat("heightScale", heightScale); // adjust with Q and E keys
-        // std::cout << heightScale << std::endl;
+        std::cout << heightScale << std::endl;
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
         glActiveTexture(GL_TEXTURE1);
@@ -271,18 +271,18 @@ void processInput(GLFWwindow *window)
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
 
-    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) 
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
     {
-        if (heightScale > 0.0f) 
+        if (heightScale > 0.0f)
             heightScale -= 0.0005f;
-        else 
+        else
             heightScale = 0.0f;
     }
-    else if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) 
+    else if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
     {
-        if (heightScale < 1.0f) 
+        if (heightScale < 1.0f)
             heightScale += 0.0005f;
-        else 
+        else
             heightScale = 1.0f;
     }
 }
